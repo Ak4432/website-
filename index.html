@@ -9,10 +9,7 @@ import {
   Zap, 
   Layers, 
   X,
-  ChevronRight,
-  Twitter,
-  Linkedin,
-  Github
+  ChevronRight
 } from 'lucide-react';
 
 // --- Project Data ---
@@ -86,11 +83,13 @@ const CAL_LINK = "https://cal.com/aashik-lsfv7z?redirect=false";
 const Navbar = () => (
   <nav className="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center backdrop-blur-md bg-black/20">
     <div className="text-xl font-bold tracking-tighter text-white">PORTFOLIO<span className="text-indigo-500">.</span></div>
+    
     <div className="hidden md:flex gap-8 text-sm font-medium text-zinc-400">
       <a href="#work" className="hover:text-white transition-colors">Work</a>
       <a href="#about" className="hover:text-white transition-colors">Process</a>
       <a href="#contact" className="hover:text-white transition-colors">Contact</a>
     </div>
+
     <a 
       href={CAL_LINK}
       target="_blank"
@@ -104,7 +103,6 @@ const Navbar = () => (
 
 const Hero = () => (
   <section className="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
-    {/* Animated Background Gradients */}
     <div className="absolute inset-0 z-0">
       <motion.div 
         animate={{ 
@@ -165,23 +163,19 @@ const ProjectCard = ({ project, onPreview }) => (
     whileHover={{ y: -10 }}
     className="group relative flex flex-col"
   >
-    {/* Browser Mockup Style */}
     <div className={`relative aspect-video rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br ${project.color}`}>
-      {/* Header bar */}
       <div className="absolute top-0 left-0 w-full h-8 bg-black/20 backdrop-blur-sm border-b border-white/5 flex items-center px-3 gap-1.5 z-20">
         <div className="w-2 h-2 rounded-full bg-red-500/50" />
         <div className="w-2 h-2 rounded-full bg-yellow-500/50" />
         <div className="w-2 h-2 rounded-full bg-green-500/50" />
       </div>
 
-      {/* Main Image */}
       <img 
         src={project.previewUrl} 
         alt={project.name}
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
       
-      {/* Overlay with buttons */}
       <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4 z-30">
         <button 
           onClick={() => onPreview(project)}
@@ -312,7 +306,6 @@ const Modal = ({ project, onClose }) => {
 const TrustSection = () => (
   <section id="about" className="py-24 px-6 max-w-7xl mx-auto">
     <div className="text-center mb-16">
-      {/* Target Focus Highlight Boxes */}
       <div className="flex flex-wrap justify-center gap-4 mb-10">
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
@@ -377,13 +370,19 @@ const Footer = () => (
             <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </a>
         </div>
-        
-        {/* Navigation section removed as requested */}
+
+        <div className="space-y-4">
+          <h4 className="text-white font-bold uppercase tracking-widest text-xs">Nav</h4>
+          <div className="flex flex-col gap-2 text-zinc-500 text-sm">
+            <a href="#work" className="hover:text-white transition-colors">Projects</a>
+            <a href="#about" className="hover:text-white transition-colors">Services</a>
+          </div>
+        </div>
       </div>
       
       <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-zinc-600 text-xs">
-          © 2024 Design Portfolio. All rights reserved.
+          © 2026 Design Portfolio. All rights reserved.
         </div>
         <div className="flex gap-8 text-zinc-600 text-xs uppercase tracking-widest">
           <a href="#" className="hover:text-white transition-colors">Privacy</a>
@@ -410,7 +409,6 @@ export default function App() {
       <Navbar />
       <Hero />
       
-      {/* Portfolio Grid */}
       <section id="work" className="py-24 px-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16">
           <div className="max-w-2xl">
@@ -423,7 +421,7 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <ProjectCard 
               key={project.id} 
               project={project} 
@@ -435,13 +433,11 @@ export default function App() {
 
       <TrustSection />
 
-      {/* Final CTA */}
       <section className="py-32 px-6 flex justify-center">
         <motion.div 
           whileInView={{ scale: [0.95, 1], opacity: [0, 1] }}
           className="relative w-full max-w-5xl rounded-[3rem] overflow-hidden p-12 md:p-24 text-center bg-zinc-900 border border-white/5"
         >
-          {/* Accent decoration */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[100px]" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[100px]" />
 
@@ -464,7 +460,6 @@ export default function App() {
 
       <Footer />
 
-      {/* Modal Preview */}
       <AnimatePresence>
         {selectedProject && (
           <Modal 
